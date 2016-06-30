@@ -1,9 +1,12 @@
-//: Playground - noun: a place where people can play
+//
+//  ViewController.swift
+//  DevWorld2016
+//
+//  Created by development on 6/30/16.
+//
+//
 
 import UIKit
-import XCPlayground
-
-// View
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
@@ -15,7 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+//        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
@@ -53,13 +57,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        print("BOB")
-//        self.presentViewController(SecondController(), animated: true, completion: nil)
-        service.weatherForSuburbs(["Melbourne"]) {
-            [unowned self](result) in
-            self.weatherReport = result
-            self.tableView.reloadData()
-        }
+        //        print("BOB")
+                self.presentViewController(SecondController(), animated: true, completion: nil)
+//        service.weatherForSuburbs(["Melbourne"]) {
+//            [unowned self](result) in
+//            self.weatherReport = result
+//            self.tableView.reloadData()
+//        }
     }
 }
 
@@ -83,43 +87,3 @@ struct WeatherResult {
         self.suburb = suburb
     }
 }
-
-// Test
-
-class MyTests : XCTestCase {
-    
-    func testViewControllerPopulatesTableCorrectly() {
-        let viewController = ViewController()
-        
-        viewController.viewDidLoad()
-        
-        let numberOfRows = viewController.tableView(viewController.tableView, numberOfRowsInSection: 0)
-        let firstCell = viewController.tableView(viewController.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
-        
-        XCTAssertNotNil(viewController.weatherReport)
-        XCTAssert(numberOfRows == 3)
-        XCTAssert(firstCell.textLabel?.text == "Maroubra - Cloudy")
-    }
-    
-    func testClickingACellPresentsSecondController() {
-        let viewController = ViewController()
-        viewController.viewDidLoad()
-//
-//        
-        viewController.tableView(viewController.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
-////
-        let secondController = viewController.presentedViewController
-//        XCTAssert(secondController?.title == "XXX")
-        print(secondController)
-        XCTAssert("A" == "B")
-        
-    }
-}
-
-MyTests()
-
-// live view
-
-
-let container = ViewController()
-XCPlaygroundPage.currentPage.liveView = container
