@@ -9,7 +9,7 @@
 import XCTest
 @testable import DevWorld2016
 
-class DevWorld2016Tests: XCTestCase {
+class ViewControllerTests: XCTestCase {
     
     func testViewControllerPopulatesTableCorrectly() {
         let viewController = ViewController()

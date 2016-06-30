@@ -18,7 +18,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
         super.init(coder: aDecoder)
     }
     
@@ -57,33 +56,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //        print("BOB")
-                self.presentViewController(SecondController(), animated: true, completion: nil)
-//        service.weatherForSuburbs(["Melbourne"]) {
-//            [unowned self](result) in
-//            self.weatherReport = result
-//            self.tableView.reloadData()
-//        }
+        self.presentViewController(SecondController(), animated: true, completion: nil)
     }
 }
 
-struct Service {
-    func weatherForSuburbs(suburbs: [String], success: (result: [WeatherResult]) -> Void) {
-        let results = suburbs.map { suburb in
-            return WeatherResult(suburb: suburb)
-        }
-        
-        success(result: results)
-        
-    }
-}
 
-struct WeatherResult {
-    let suburb: String
-    let forecast = "Cloudy"
-    let temperature = "0 C"
-    
-    init(suburb: String) {
-        self.suburb = suburb
-    }
-}
+
+
