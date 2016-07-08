@@ -9,7 +9,7 @@
 import Foundation
 
 struct Service {
-    func weatherForSuburbs(suburbs: [String], success: (result: [WeatherResult]) -> Void) {
+    func weatherForSuburbs(_ suburbs: [String], success: (result: [WeatherResult]) -> Void) {
         let results = suburbs.map { suburb in
             return WeatherResult(suburb: suburb)
         }

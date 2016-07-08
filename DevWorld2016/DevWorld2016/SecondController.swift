@@ -14,14 +14,14 @@ public class SecondController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modalTransitionStyle = .FlipHorizontal
+        self.modalTransitionStyle = .flipHorizontal
         
-        self.view.backgroundColor = .whiteColor()
+        self.view.backgroundColor = .white()
         
-        let backButton = UIButton(frame: CGRectMake(0, 0, 44, 44))
-        backButton.backgroundColor = .redColor()
-        backButton.setTitle("BK", forState: .Normal)
-        backButton.addTarget(self, action: #selector(SecondController.pop), forControlEvents: .TouchUpInside)
+        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        backButton.backgroundColor = .red()
+        backButton.setTitle("BK", for: UIControlState())
+        backButton.addTarget(self, action: #selector(SecondController.pop), for: .touchUpInside)
         self.view.addSubview(backButton)
         
         
@@ -29,6 +29,6 @@ public class SecondController: UIViewController {
     }
     
     func pop() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

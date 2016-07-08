@@ -24,9 +24,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .clearColor()
+        self.view.backgroundColor = .clear()
         
-        let tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), style: .Plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
@@ -38,25 +38,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        assert(indexPath.row < weatherReport?.count)
+        assert((indexPath as NSIndexPath).row < weatherReport?.count)
         
-        let result = weatherReport![indexPath.row]
+        let result = weatherReport![(indexPath as NSIndexPath).row]
         
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "")
         cell.textLabel?.text = "\(result.suburb) - \(result.forecast)"
         cell.detailTextLabel?.text = result.temperature
         
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherReport?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.presentViewController(SecondController(), animated: true, completion: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.present(SecondController(), animated: true, completion: nil)
     }
 }
 
