@@ -2,6 +2,7 @@
 
 import UIKit
 import XCPlayground
+import PlaygroundSupport
 
 // View
 
@@ -21,9 +22,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .clearColor()
+        self.view.backgroundColor = .clear()
         
-        let tableView = UITableView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), style: .Plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
@@ -35,42 +36,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        assert(indexPath.row < weatherReport?.count)
+        assert((indexPath as NSIndexPath).row < weatherReport?.count)
         
-        let result = weatherReport![indexPath.row]
+        let result = weatherReport![(indexPath as NSIndexPath).row]
         
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "")
         cell.textLabel?.text = "\(result.suburb) - \(result.forecast)"
         cell.detailTextLabel?.text = result.temperature
         
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherReport?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        print("BOB")
-//        self.presentViewController(SecondController(), animated: true, completion: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         service.weatherForSuburbs(["Melbourne"]) {
             [unowned self](result) in
+            
             self.weatherReport = result
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
 }
 
 struct Service {
-    func weatherForSuburbs(suburbs: [String], success: (result: [WeatherResult]) -> Void) {
+    func weatherForSuburbs(_ suburbs: [String], success: (result: [WeatherResult]) -> Void) {
         let results = suburbs.map { suburb in
             return WeatherResult(suburb: suburb)
         }
         
         success(result: results)
-        
     }
 }
 
@@ -94,25 +95,22 @@ class MyTests : XCTestCase {
         viewController.viewDidLoad()
         
         let numberOfRows = viewController.tableView(viewController.tableView, numberOfRowsInSection: 0)
-        let firstCell = viewController.tableView(viewController.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let firstCell = viewController.tableView(viewController.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         
         XCTAssertNotNil(viewController.weatherReport)
         XCTAssert(numberOfRows == 3)
         XCTAssert(firstCell.textLabel?.text == "Maroubra - Cloudy")
     }
     
-    func testClickingACellPresentsSecondController() {
+    func testClickingACellReloadsTable() {
         let viewController = ViewController()
         viewController.viewDidLoad()
-//
-//        
-        viewController.tableView(viewController.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
-////
-        let secondController = viewController.presentedViewController
-//        XCTAssert(secondController?.title == "XXX")
-        print(secondController)
-        XCTAssert("A" == "B")
+
+        XCTAssert(viewController.tableView(viewController.tableView, numberOfRowsInSection: 0) == 3)
         
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        
+        XCTAssert(viewController.tableView(viewController.tableView, numberOfRowsInSection: 0) == 1)
     }
 }
 
@@ -123,3 +121,4 @@ MyTests()
 
 let container = ViewController()
 XCPlaygroundPage.currentPage.liveView = container
+XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
