@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol ServiceProtocol {
+protocol WeatherService {
     func weatherForSuburbs(_ suburbs: [String], success: (result: [WeatherResult]) -> Void)
 }
 
-struct Service : ServiceProtocol {
+struct Service : WeatherService {
     func weatherForSuburbs(_ suburbs: [String], success: (result: [WeatherResult]) -> Void) {
         let results = suburbs.map { suburb in
             return WeatherResult(suburb: suburb)

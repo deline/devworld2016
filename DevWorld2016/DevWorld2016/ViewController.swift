@@ -8,57 +8,21 @@
 
 import UIKit
 
-typealias WeatherResultRow = [(title: String, description: String)]
-
-struct ViewModel {
-    let rows : WeatherResultRow
-}
-
-protocol ViewPort {
-    func refreshWithResult(viewModel: ViewModel)
-    func presentSecondController()
-}
-
-struct ViewAdapter {
-    private let service: ServiceProtocol
-    private let viewPort: ViewPort
-    
-    init(service: ServiceProtocol, viewPort: ViewPort) {
-        self.service = service
-        self.viewPort = viewPort
-    }
-    
-    func viewDidLoadEvent() {
-        service.weatherForSuburbs(["Maroubra", "Bondi", "Baulkham Hills"]) {
-            results in
-
-            let rows = results.map { result in
-                return (title: "\(result.suburb) - \(result.forecast)", description: result.temperature)
-            }
-            let viewModel = ViewModel(rows: rows)
-            
-            self.viewPort.refreshWithResult(viewModel: viewModel)
-        }
-    }
-    
-    func didSelectRowAt(indexPath: NSIndexPath) {
-        self.viewPort.presentSecondController()
-    }
-}
-
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ViewPort {
     let tableView = UITableView()
     private (set) var viewModel: ViewModel?
     private var viewAdapter : ViewAdapter!
     
-    init(service: ServiceProtocol) {
+    init(service: WeatherService) {
         super.init(nibName: nil, bundle: nil)
-        self.viewAdapter = ViewAdapter(service: service, viewPort: self)
+        self.viewAdapter = ViewAdapter(service: service)
+        self.viewAdapter.viewPort = self
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.viewAdapter = ViewAdapter(service: Service(), viewPort: self)
+        self.viewAdapter = ViewAdapter(service: Service())
+        self.viewAdapter.viewPort = self
     }
     
     override func viewDidLoad() {
@@ -73,11 +37,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         viewAdapter.viewDidLoadEvent()
     }
-    
-    func refreshWithResult(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        self.tableView.reloadData()
-    }
+
+    // MARK: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -98,6 +59,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewAdapter.didSelectRowAt(indexPath: indexPath)
+    }
+    
+    // MARK: ViewPort
+
+    func refreshWithResult(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self.tableView.reloadData()
     }
     
     func presentSecondController() {
