@@ -39,7 +39,8 @@ class ViewControllerTests: XCTestCase {
     
     func testViewDidLoadEvent() {
         let viewPort = ViewPortSpy()
-        let viewAdapter = ViewAdapter(service: ServiceStub(), viewPort: viewPort)
+        var viewAdapter = ViewAdapter(service: ServiceStub())
+        viewAdapter.viewPort = viewPort
         
         viewAdapter.viewDidLoadEvent()
         
@@ -50,7 +51,8 @@ class ViewControllerTests: XCTestCase {
     
     func testDidSelectIndexPathEvent() {
         let viewPort = ViewPortSpy()
-        let viewAdapter = ViewAdapter(service: ServiceStub(), viewPort: viewPort)
+        var viewAdapter = ViewAdapter(service: ServiceStub())
+        viewAdapter.viewPort = viewPort
         
         viewAdapter.didSelectRowAt(indexPath: NSIndexPath(row: 0, section: 0))
         
@@ -58,7 +60,7 @@ class ViewControllerTests: XCTestCase {
     }
 }
 
-struct ServiceStub : ServiceProtocol {
+struct ServiceStub : WeatherService {
     func weatherForSuburbs(_ suburbs: [String], success: (result: [WeatherResult]) -> Void) {
         let weatherResult = WeatherResult(suburb: "Maroubra")
         success(result: [weatherResult, weatherResult, weatherResult])
