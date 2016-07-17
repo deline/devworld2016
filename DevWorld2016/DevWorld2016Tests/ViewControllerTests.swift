@@ -12,7 +12,7 @@ import XCTest
 class ViewControllerTests: XCTestCase {
     
     func testViewControllerPopulatesTableCorrectly() {
-        let viewController = ViewController(service: ServiceStub())
+        let viewController = ViewController(service: PokemonSearchServiceStub())
         
         viewController.viewDidLoad()
         
@@ -24,7 +24,7 @@ class ViewControllerTests: XCTestCase {
     }
 
     func testClickingACellPresentsSecondController() {
-        let viewController = ViewController(service: ServiceStub())
+        let viewController = ViewController(service: PokemonSearchServiceStub())
         UIApplication.shared().keyWindow?.rootViewController = viewController
         
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
@@ -34,48 +34,8 @@ class ViewControllerTests: XCTestCase {
         
         XCTAssert(secondController?.title == "Second controller")
     }
-    
-    // Testing viewAdapter
-    
-    func testViewDidLoadEvent() {
-        let viewPort = ViewPortSpy()
-        var viewAdapter = ViewAdapter(service: ServiceStub())
-        viewAdapter.viewPort = viewPort
-        
-        viewAdapter.viewDidLoadEvent()
-        
-        XCTAssertNotNil(viewPort.viewModel)
-        XCTAssert(viewPort.viewModel?.rows.count == 3)
-        XCTAssert(viewPort.viewModel?.rows[0].title == "Maroubra - Cloudy")
-    }
-    
-    func testDidSelectIndexPathEvent() {
-        let viewPort = ViewPortSpy()
-        var viewAdapter = ViewAdapter(service: ServiceStub())
-        viewAdapter.viewPort = viewPort
-        
-        viewAdapter.didSelectRowAt(indexPath: NSIndexPath(row: 0, section: 0))
-        
-        XCTAssertTrue(viewPort.presentedSecondController)
-    }
 }
 
-struct ServiceStub : WeatherService {
-    func weatherForSuburbs(_ suburbs: [String], success: (result: [WeatherResult]) -> Void) {
-        let weatherResult = WeatherResult(suburb: "Maroubra")
-        success(result: [weatherResult, weatherResult, weatherResult])
-    }
-}
 
-class ViewPortSpy : ViewPort {
-    private (set) var presentedSecondController = false
-    private (set) var viewModel : ViewModel? = nil
-    
-    func refreshWithResult(viewModel: ViewModel) {
-        self.viewModel = viewModel
-    }
-    
-    func presentSecondController() {
-        presentedSecondController = true
-    }
-}
+
+

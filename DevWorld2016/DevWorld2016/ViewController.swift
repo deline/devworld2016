@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private (set) var viewModel: ViewModel?
     private var viewAdapter : ViewAdapter!
     
-    init(service: WeatherService) {
+    init(service: PokemonSearchService) {
         super.init(nibName: nil, bundle: nil)
         self.viewAdapter = ViewAdapter(service: service)
         self.viewAdapter.viewPort = self

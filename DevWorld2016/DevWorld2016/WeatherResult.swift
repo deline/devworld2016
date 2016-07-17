@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct WeatherResult {
-    let suburb: String
-    let forecast = "Cloudy"
-    let temperature = "0 C"
+struct SearchResult {
+    let pokemon: String
+    let suburbsPresent: [String]
     
-    init(suburb: String) {
-        self.suburb = suburb
+    init(pokemon: String, suburbsPresent: [String]) {
+        self.pokemon = pokemon
+        self.suburbsPresent = suburbsPresent
     }
 }
