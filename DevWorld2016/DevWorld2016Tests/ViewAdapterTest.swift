@@ -19,8 +19,9 @@ class ViewAdapterTest: XCTestCase {
         viewAdapter.viewDidLoadEvent()
 
         XCTAssertNotNil(viewPort.viewModel)
-        XCTAssert(viewPort.viewModel?.rows.count == 3)
-        XCTAssert(viewPort.viewModel?.rows[0].title == "Maroubra - Cloudy")
+        XCTAssert(viewPort.viewModel?.rows.count == 5)
+        XCTAssert(viewPort.viewModel?.rows[0].title == "Bulbasaur")
+        XCTAssert(viewPort.viewModel?.rows[0].description == "Sydney, Melbourne")
     }
 
 //    func testDidSelectIndexPathEvent() {

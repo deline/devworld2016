@@ -12,7 +12,7 @@ import Foundation
 struct PokemonSearchServiceStub: PokemonSearchService {
     func suburbsContaining(pokemon: [String], success: (result:[SearchResult]) -> Void) {
         let results = pokemon.map {
-            return SearchResult(pokemon: $0, suburbsPresent: ["Sydney"])
+            return SearchResult(pokemon: $0, suburbsPresent: ["Sydney", "Melbourne"])
         }
         
         success(result: results)
