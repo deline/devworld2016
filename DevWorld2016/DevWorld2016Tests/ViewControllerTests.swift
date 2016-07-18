@@ -23,17 +23,17 @@ class ViewControllerTests: XCTestCase {
         XCTAssert(firstCell.textLabel?.text == "Maroubra - Cloudy")
     }
 
-    func testClickingACellPresentsSecondController() {
-        let viewController = ViewController(service: PokemonSearchServiceStub())
-        UIApplication.shared().keyWindow?.rootViewController = viewController
-        
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-
-        let secondController = viewController.presentedViewController
-        print(secondController)
-        
-        XCTAssert(secondController?.title == "Second controller")
-    }
+//    func testClickingACellPresentsSecondController() {
+//        let viewController = ViewController(service: PokemonSearchServiceStub())
+//        UIApplication.shared().keyWindow?.rootViewController = viewController
+//        
+//        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+//
+//        let secondController = viewController.presentedViewController
+//        print(secondController)
+//        
+//        XCTAssert(secondController?.title == "Second controller")
+//    }
 }
 
 

@@ -23,14 +23,14 @@ class ViewAdapterTest: XCTestCase {
         XCTAssert(viewPort.viewModel?.rows[0].title == "Maroubra - Cloudy")
     }
 
-    func testDidSelectIndexPathEvent() {
-        let viewPort = ViewPortSpy()
-        var viewAdapter = ViewAdapter(service: PokemonSearchServiceStub())
-        viewAdapter.viewPort = viewPort
-
-        viewAdapter.didSelectRowAt(indexPath: NSIndexPath(row: 0, section: 0))
-
-        XCTAssertTrue(viewPort.presentedSecondController)
-    }
+//    func testDidSelectIndexPathEvent() {
+//        let viewPort = ViewPortSpy()
+//        var viewAdapter = ViewAdapter(service: PokemonSearchServiceStub())
+//        viewAdapter.viewPort = viewPort
+//
+//        viewAdapter.didSelectRowAt(indexPath: NSIndexPath(row: 0, section: 0))
+//
+//        XCTAssertTrue(viewPort.presentedSecondController)
+//    }
 
 }

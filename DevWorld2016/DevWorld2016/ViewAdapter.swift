@@ -10,7 +10,6 @@ import Foundation
 
 protocol ViewPort : class {
     func refreshWithResult(viewModel: ViewModel)
-    func presentSecondController()
 }
 
 struct ViewAdapter {
@@ -28,9 +27,5 @@ struct ViewAdapter {
             let viewModel = ViewModel(results: results)
             self.viewPort?.refreshWithResult(viewModel: viewModel)
         }
-    }
-    
-    func didSelectRowAt(indexPath: NSIndexPath) {
-        self.viewPort?.presentSecondController()
     }
 }

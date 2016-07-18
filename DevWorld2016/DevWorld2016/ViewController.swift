@@ -59,14 +59,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.rows.count ?? 0
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewAdapter.didSelectRowAt(indexPath: indexPath)
-    }
-    
-    func presentSecondController() {
-        self.present(SecondController(), animated: true, completion: nil)
-    }
 }
 
 
