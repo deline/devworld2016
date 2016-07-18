@@ -14,19 +14,18 @@ protocol ViewPort : class {
 }
 
 struct ViewAdapter {
-    private let service: WeatherService
+    private let service: PokemonSearchService
     weak var viewPort: ViewPort?
     
-    init(service: WeatherService) {
+    init(service: PokemonSearchService) {
         self.service = service
     }
     
     func viewDidLoadEvent() {
-        service.weatherForSuburbs(["Maroubra", "Bondi", "Baulkham Hills"]) {
+        service.suburbsContaining(pokemon: ["Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon"]) {
             results in
             
             let viewModel = ViewModel(results: results)
-            
             self.viewPort?.refreshWithResult(viewModel: viewModel)
         }
     }

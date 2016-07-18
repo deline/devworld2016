@@ -17,7 +17,10 @@
 		330EC4411D24BF7800F676F1 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330EC4401D24BF7800F676F1 /* ViewControllerTests.swift */; };
 		330EC44C1D24C08400F676F1 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330EC44B1D24C08400F676F1 /* SecondController.swift */; };
 		330EC4501D24C53A00F676F1 /* WeatherResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330EC44F1D24C53A00F676F1 /* WeatherResult.swift */; };
-		330EC4531D24C55900F676F1 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330EC4521D24C55900F676F1 /* WeatherService.swift */; };
+		330EC4531D24C55900F676F1 /* PokemonSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330EC4521D24C55900F676F1 /* PokemonSearchService.swift */; };
+		73A1510F1D3C37CE00F900D3 /* ViewAdapterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1510E1D3C37CE00F900D3 /* ViewAdapterTest.swift */; };
+		73A151111D3C383C00F900D3 /* ViewPortSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A151101D3C383C00F900D3 /* ViewPortSpy.swift */; };
+		73A151131D3C385F00F900D3 /* PokemonSearchServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A151121D3C385F00F900D3 /* PokemonSearchServiceStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +48,10 @@
 		330EC4421D24BF7800F676F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		330EC44B1D24C08400F676F1 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
 		330EC44F1D24C53A00F676F1 /* WeatherResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherResult.swift; sourceTree = "<group>"; };
-		330EC4521D24C55900F676F1 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		330EC4521D24C55900F676F1 /* PokemonSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonSearchService.swift; sourceTree = "<group>"; };
+		73A1510E1D3C37CE00F900D3 /* ViewAdapterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAdapterTest.swift; sourceTree = "<group>"; };
+		73A151101D3C383C00F900D3 /* ViewPortSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPortSpy.swift; sourceTree = "<group>"; };
+		73A151121D3C385F00F900D3 /* PokemonSearchServiceStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonSearchServiceStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,9 @@
 			children = (
 				330EC4401D24BF7800F676F1 /* ViewControllerTests.swift */,
 				330EC4421D24BF7800F676F1 /* Info.plist */,
+				73A1510E1D3C37CE00F900D3 /* ViewAdapterTest.swift */,
+				73A151101D3C383C00F900D3 /* ViewPortSpy.swift */,
+				73A151121D3C385F00F900D3 /* PokemonSearchServiceStub.swift */,
 			);
 			path = DevWorld2016Tests;
 			sourceTree = "<group>";
@@ -146,7 +155,7 @@
 		330EC4511D24C54C00F676F1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				330EC4521D24C55900F676F1 /* WeatherService.swift */,
+				330EC4521D24C55900F676F1 /* PokemonSearchService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -253,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				330EC4531D24C55900F676F1 /* WeatherService.swift in Sources */,
+				330EC4531D24C55900F676F1 /* PokemonSearchService.swift in Sources */,
 				330EC44C1D24C08400F676F1 /* SecondController.swift in Sources */,
 				330EC4501D24C53A00F676F1 /* WeatherResult.swift in Sources */,
 				330EC42E1D24BF7800F676F1 /* ViewController.swift in Sources */,
@@ -267,7 +276,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73A1510F1D3C37CE00F900D3 /* ViewAdapterTest.swift in Sources */,
+				73A151111D3C383C00F900D3 /* ViewPortSpy.swift in Sources */,
 				330EC4411D24BF7800F676F1 /* ViewControllerTests.swift in Sources */,
+				73A151131D3C385F00F900D3 /* PokemonSearchServiceStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

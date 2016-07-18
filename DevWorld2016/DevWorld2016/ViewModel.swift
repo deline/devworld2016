@@ -8,13 +8,13 @@
 
 import Foundation
 
-typealias WeatherResultRow = [(title: String, description: String)]
+typealias PokemonSearchResultRow = [(title: String, description: String)]
 
 struct ViewModel {
-    let rows : WeatherResultRow
-    init(results: [WeatherResult]) {
+    let rows : PokemonSearchResultRow
+    init(results: [SearchResult]) {
         self.rows = results.map { result in
-            return (title: "\(result.suburb) - \(result.forecast)", description: result.temperature)
+        return (title: "\(result.pokemon)", description: result.suburbsPresent.joined(separator: ", "))
         }
     }
 }

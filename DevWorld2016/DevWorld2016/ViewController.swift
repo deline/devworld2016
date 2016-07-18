@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private (set) var viewModel: ViewModel?
     private var viewAdapter : ViewAdapter!
     
-    init(service: WeatherService) {
+    init(service: PokemonSearchService) {
         super.init(nibName: nil, bundle: nil)
         self.viewAdapter = ViewAdapter(service: service)
         self.viewAdapter.viewPort = self
@@ -37,8 +37,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         viewAdapter.viewDidLoadEvent()
     }
-
-    // MARK: UITableViewDataSource, UITableViewDelegate
+    
+    func refreshWithResult(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self.tableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -59,13 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewAdapter.didSelectRowAt(indexPath: indexPath)
-    }
-    
-    // MARK: ViewPort
-
-    func refreshWithResult(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        self.tableView.reloadData()
     }
     
     func presentSecondController() {
