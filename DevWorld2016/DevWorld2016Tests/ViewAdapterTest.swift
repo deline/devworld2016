@@ -10,7 +10,6 @@ import XCTest
 @testable import DevWorld2016
 
 class ViewAdapterTest: XCTestCase {
-
     func testViewDidLoadEvent() {
         let viewPort = ViewPortSpy()
         var viewAdapter = ViewAdapter(service: PokemonSearchServiceStub())
@@ -23,15 +22,4 @@ class ViewAdapterTest: XCTestCase {
         XCTAssert(viewPort.viewModel?.rows[0].title == "Bulbasaur")
         XCTAssert(viewPort.viewModel?.rows[0].description == "Sydney, Melbourne")
     }
-
-//    func testDidSelectIndexPathEvent() {
-//        let viewPort = ViewPortSpy()
-//        var viewAdapter = ViewAdapter(service: PokemonSearchServiceStub())
-//        viewAdapter.viewPort = viewPort
-//
-//        viewAdapter.didSelectRowAt(indexPath: NSIndexPath(row: 0, section: 0))
-//
-//        XCTAssertTrue(viewPort.presentedSecondController)
-//    }
-
 }

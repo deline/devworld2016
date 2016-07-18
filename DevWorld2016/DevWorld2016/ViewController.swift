@@ -28,14 +28,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTableView()
+        
+        viewAdapter.viewDidLoadEvent()
+    }
+    
+    private func setupTableView() {
         self.view.backgroundColor = .clear()
         
         let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
-        
-        viewAdapter.viewDidLoadEvent()
     }
     
     func refreshWithResult(viewModel: ViewModel) {
